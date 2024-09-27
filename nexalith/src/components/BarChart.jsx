@@ -27,8 +27,13 @@ const insideLabelPlugin = {
         const value = dataset.data[index]; // Getting the value of each bar
         ctx.fillStyle = "white"; // Text color
         ctx.textAlign = "center"; // Aligning the text in the center of each bar
-        ctx.font = "bold 14px Arial"; // Font style for the label
+        ctx.font = window.innerWidth < 768 ? "bold 10px Arial" : "bold 14px Arial"; // Responsive font size
+
         ctx.fillText(value, bar.x, bar.y - 10); // Numerical indicator on top of the bar
+        // Write the label inside the bars on small screens
+        if (window.innerWidth < 768) {
+            ctx.fillText(labels[index], bar.x, bar.y - (bar.height / 2) - 5);
+          }
       });
     });
   }
@@ -112,13 +117,13 @@ const BarChartWithArrows = () => {
         <div className="relative bg-purple-300 p-4 md:p-6 lg:p-8 w-full max-w-[95%] lg:max-w-[900px] mx-auto flex flex-col justify-between">
           
           {/* Row of labels above the chart */}
-          <div className="flex justify-between mb-4 space-x-2 md:space-x-4">
-            {["Fragmented", "Volatile", "Global", "New players", "Early adapters"].map((label, index) => (
-              <span key={index} className="text-center text-xs md:text-sm font-bold text-gray-900 w-1/5">
-                {label} {/* Text labels above the chart */}
-              </span>
-            ))}
-          </div>
+          <div className="hidden md:flex justify-between mb-4 space-x-2 md:space-x-4">
+      {["Fragmented", "Volatile", "Global", "New players", "Early adapters"].map((label, index) => (
+        <span key={index} className="text-center text-xs md:text-sm font-bold text-gray-900 w-1/5">
+          {label} {/* Text labels above the chart */}
+        </span>
+      ))}
+    </div>
       
           <div className="relative">
             
@@ -128,7 +133,7 @@ const BarChartWithArrows = () => {
             </div>
             
             {/* Risk level indicators on the side with arrows and write-up */}
-            <div className="absolute top-0 right-[-80px] md:right-[-100px] lg:right-[-120px] flex flex-col items-center justify-between h-[250px] md:h-[400px] lg:h-[500px] space-y-2 md:space-y-4">
+            <div className="absolute top-0 right-[-80px] md:right-[-100px] lg:right-[-120px] flex flex-col items-center justify-between h-[250px] md:h-[400px] lg:h-[500px] space-y-2 md:space-y-4 hidden md:flex">
               <div className="flex flex-col items-center space-y-1 md:space-y-2">
                 <span className="text-xs md:text-sm font-bold">High risk</span>
                 <span className="text-xs text-gray-600">Strong need for innovation</span>
@@ -145,7 +150,7 @@ const BarChartWithArrows = () => {
           </div>
       
           {/* Row of labels below the chart */}
-          <div className="flex justify-between mt-4 md:mt-6 space-x-2 md:space-x-4">
+          <div className="flex justify-between mt-4 md:mt-6 space-x-2 md:space-x-4 hidden md:flex">
             {["Market maturity", "Market situation", "Competitors", "Competition", "Customers"].map((label, index) => (
               <span key={index} className="text-center text-xs md:text-sm font-bold text-gray-900 w-1/8">
                 {label} {/* Text labels below the chart */}
@@ -154,6 +159,7 @@ const BarChartWithArrows = () => {
           </div>
         </div>
       );
+      
       
 };
 
