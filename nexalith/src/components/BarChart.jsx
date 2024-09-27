@@ -107,54 +107,54 @@ const BarChartWithArrows = () => {
       }
     };
 
-  return (
-    // Main container for the chart and labels
-    <div className="relative bg-purple-300 p-8 w-full lg:w-[900px] lg:h-[600px] mx-auto flex flex-col justify-between">
-     
-      {/* Row of labels above the chart */}
-      <div className="flex justify-between mb-4 space-x-4">
-        {["Fragmented", "Volatile", "Global", "New players", "Early adapters"].map((label, index) => (
-          <span key={index} className="text-center text-sm font-bold text-gray-900 w-1/5">
-            {label} {/* Text labels above the chart */}
-          </span>
-        ))}
-      </div>
-
+    return (
+        // Main container for the chart and labels
+        <div className="relative bg-purple-300 p-4 md:p-6 lg:p-8 w-full max-w-[95%] lg:max-w-[900px] mx-auto flex flex-col justify-between">
+          
+          {/* Row of labels above the chart */}
+          <div className="flex justify-between mb-4 space-x-2 md:space-x-4">
+            {["Fragmented", "Volatile", "Global", "New players", "Early adapters"].map((label, index) => (
+              <span key={index} className="text-center text-xs md:text-sm font-bold text-gray-900 w-1/5">
+                {label} {/* Text labels above the chart */}
+              </span>
+            ))}
+          </div>
       
-      <div className="relative">
-       
-        {/* Bar chart */}
-        <div className="relative z-10 w-full h-[400px] lg:h-[500px] p-4">
-          <Bar data={data} options={options} plugins={[insideLabelPlugin]} />
-        </div>
+          <div className="relative">
+            
+            {/* Bar chart */}
+            <div className="relative z-10 w-full h-[250px] md:h-[400px] lg:h-[500px] p-2 md:p-4">
+              <Bar data={data} options={options} plugins={[insideLabelPlugin]} />
+            </div>
+            
+            {/* Risk level indicators on the side with arrows and write-up */}
+            <div className="absolute top-0 right-[-80px] md:right-[-100px] lg:right-[-120px] flex flex-col items-center justify-between h-[250px] md:h-[400px] lg:h-[500px] space-y-2 md:space-y-4">
+              <div className="flex flex-col items-center space-y-1 md:space-y-2">
+                <span className="text-xs md:text-sm font-bold">High risk</span>
+                <span className="text-xs text-gray-600">Strong need for innovation</span>
+              </div>
+              <div className="flex flex-col items-center space-y-1 md:space-y-2">
+                <span className="text-xs md:text-sm font-bold">Medium risk</span>
+                <span className="text-xs text-gray-600">Need for innovation</span>
+              </div>
+              <div className="flex flex-col items-center space-y-1 md:space-y-2">
+                <span className="text-xs md:text-sm font-bold">Low risk</span>
+                <span className="text-xs text-gray-600">Low need for innovation</span>
+              </div>
+            </div>
+          </div>
       
-        {/* Risk level indicators on the side with arrows and write-up */}
-        <div className="absolute top-0 right-[-120px] flex flex-col items-center justify-between h-[400px] lg:h-[500px] space-y-4">
-          <div className="flex flex-col items-center space-y-2">
-            <span className="text-sm font-bold">High risk</span>
-            <span className="text-xs text-gray-600">Strong need for innovation</span>
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <span className="text-sm font-bold">Medium risk</span>
-            <span className="text-xs text-gray-600">Need for innovation</span>
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <span className="text-sm font-bold">Low risk</span>
-            <span className="text-xs text-gray-600">Low need for innovation</span>
+          {/* Row of labels below the chart */}
+          <div className="flex justify-between mt-4 md:mt-6 space-x-2 md:space-x-4">
+            {["Market maturity", "Market situation", "Competitors", "Competition", "Customers"].map((label, index) => (
+              <span key={index} className="text-center text-xs md:text-sm font-bold text-gray-900 w-1/8">
+                {label} {/* Text labels below the chart */}
+              </span>
+            ))}
           </div>
         </div>
-      </div>
-
-      {/* Row of labels below the chart */}
-      <div className="flex justify-between mt-6 space-x-4">
-        {["Market maturity", "Market situation", "Competitors", "Competition", "Customers"].map((label, index) => (
-          <span key={index} className="text-center text-sm font-bold text-gray-900 w-1/8">
-            {label} {/* Text labels below the chart */}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
+      );
+      
 };
 
 export default BarChartWithArrows; // Export the component
