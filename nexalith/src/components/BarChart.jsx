@@ -19,7 +19,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Title, Legend,
 const insideLabelPlugin = {
   id: "insideLabelPlugin", // Plugin ID
   afterDatasetsDraw: (chart) => { // Function to draw the text after the dataset (bars) is rendered
-    const { ctx, data: { datasets } } = chart; // Extracting canvas context and datasets
+    const { ctx, data: { datasets, labels } } = chart; // Extracting canvas context and datasets
 
     datasets.forEach((dataset, i) => {
       const meta = chart.getDatasetMeta(i); // Getting metadata of each dataset
@@ -133,7 +133,7 @@ const BarChartWithArrows = () => {
             </div>
             
             {/* Risk level indicators on the side with arrows and write-up */}
-            <div className="absolute top-0 right-[-80px] md:right-[-100px] lg:right-[-120px] flex flex-col items-center justify-between h-[250px] md:h-[400px] lg:h-[500px] space-y-2 md:space-y-4 hidden md:flex">
+            <div className="absolute top-0 right-[-80px] md:right-[-100px] lg:right-[-180px] flex flex-col items-center justify-between h-[250px] md:h-[400px] lg:h-[500px] space-y-2 md:space-y-4 hidden md:flex">
               <div className="flex flex-col items-center space-y-1 md:space-y-2">
                 <span className="text-xs md:text-sm font-bold">High risk</span>
                 <span className="text-xs text-gray-600">Strong need for innovation</span>
